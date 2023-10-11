@@ -71,9 +71,11 @@ class Main extends PluginBase implements Listener {
     }
 
     public function onPlayerCloseForm(Player $player, ?SimpleForm $form) {
-        if ($form !== null) {
-            $config = $this->getConfig()->get("messages");
-            $this->openForm($player, $config);
+    if ($form !== null) {
+        $config = $this->getConfig()->get("messages");
+        $this->openForm($player, $config);
+    } else {
+        $this->sendJoinForm($player);
         }
     }
 }
