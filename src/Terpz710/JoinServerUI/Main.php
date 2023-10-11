@@ -6,7 +6,7 @@ namespace Terpz710\JoinServerUI;
 
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\plugin\PluginBase;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
