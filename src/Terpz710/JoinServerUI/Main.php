@@ -14,8 +14,6 @@ use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 
 class Main extends PluginBase implements Listener {
 
-    private array $waitingForConfirmation = [];
-
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
