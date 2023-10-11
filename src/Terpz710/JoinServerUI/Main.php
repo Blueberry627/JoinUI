@@ -28,10 +28,15 @@ class Main extends PluginBase implements Listener {
         $config = $this->getConfig()->get("messages");
 
         $form = new SimpleForm(function (Player $player, $data) use ($config) {
-            if ($data !== null) { // Check if a button was clicked
-                $this->playPopSound($player);
-                $this->sendTitle($player, $config["title_on_click"]);
-                $this->sendSubtitle($player, $config["subtitle_text"]);
+            if ($data !== null) {
+                if ($config["buttons"][$data] === "Yes") {
+                    $this->playPopSound($player);
+                    $this->sendTitle($player, $config["title_on_click"]);
+                    $this->sendSubtitle($player, $config["subtitle_text"]);
+                } else {
+                    // Display the form again
+                    $this->sendJoinForm($player);
+                }
             }
         });
 
@@ -62,7 +67,7 @@ class Main extends PluginBase implements Listener {
     public function sendTitle(Player $player, string $titleText) {
         $player->sendTitle(TextFormat::colorize($titleText), "");
     }
-    
+
     public function sendSubtitle(Player $player, string $subtitleText) {
         $player->sendSubTitle(TextFormat::colorize($subtitleText));
     }
