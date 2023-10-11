@@ -11,6 +11,7 @@ use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket; // Import the necessary packet
 
 class Main extends PluginBase implements Listener {
 
@@ -30,10 +31,9 @@ class Main extends PluginBase implements Listener {
         $config = $this->getConfig()->get("messages");
         $form = new SimpleForm(function (Player $player, $data) use ($config) {
             if (in_array($player->getName(), $this->waitingForConfirmation)) {
-                if ($data === 0) {
+                if ($data === null) {
                     $this->playPopSound($player);
                     $this->sendTitle($player, $config["title_on_click"]);
-                    
                     $this->sendSubtitle($player, $config["subtitle_text"]);
                 } else {
                     $player->sendMessage($config["must_click_ok_message"]);
@@ -51,7 +51,7 @@ class Main extends PluginBase implements Listener {
 
         $buttons = $config["buttons"];
         foreach ($buttons as $button) {
-            $form->addButton($button, SimpleForm::IMAGE_TYPE_PATH, "", $button);
+            $form->addButton($button);
         }
 
         $player->sendForm($form);
@@ -60,8 +60,8 @@ class Main extends PluginBase implements Listener {
     }
 
     public function playPopSound(Player $player) {
-        $pk = new PlaySoundPacket();
-        $pk->soundName = "random.pop";
+        $pk = new LevelSoundEventPacket();
+        $pk->sound = LevelSoundEventPacket::SOUND_RANDOM_POP;
         $pk->position = $player->getPosition();
         $pk->volume = 1.0;
         $pk->pitch = 1.0;
@@ -73,6 +73,6 @@ class Main extends PluginBase implements Listener {
     }
     
     public function sendSubtitle(Player $player, string $subtitleText) {
-        $player->sendSubtitle(TextFormat::colorize($subtitleText));
+        $player->sendSubTitle(TextFormat::colorize($subtitleText));
     }
 }
