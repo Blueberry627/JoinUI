@@ -38,9 +38,6 @@ class Main extends PluginBase implements Listener {
                     $this->sendTitle($player, $config["title_on_click"]);
                     $this->sendSubtitle($player, $config["subtitle_text"]);
                 }
-            } else {
-                // If the form is closed without clicking anything, reopen it
-                $this->openForm($player, $config);
             }
         });
 
@@ -74,5 +71,12 @@ class Main extends PluginBase implements Listener {
 
     public function sendSubtitle(Player $player, string $subtitleText) {
         $player->sendSubTitle(TextFormat::colorize($subtitleText));
+    }
+
+    public function onPlayerCloseForm(Player $player, ?SimpleForm $form) {
+        if ($form !== null) {
+            $config = $this->getConfig()->get("messages");
+            $this->openForm($player, $config);
+        }
     }
 }
