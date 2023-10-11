@@ -71,10 +71,10 @@ class Main extends PluginBase implements Listener {
     }
 
     public function sendTitle(Player $player, string $titleText) {
-        $player->addTitle(TextFormat::colorize($titleText), "");
+        $player->sendTitle(TextFormat::colorize($titleText), "");
     }
     
     public function sendSubtitle(Player $player, string $subtitleText) {
-        $player->addSubtitle(TextFormat::colorize($subtitleText));
+        $player->sendSubtitle(TextFormat::colorize($subtitleText));
     }
 }
