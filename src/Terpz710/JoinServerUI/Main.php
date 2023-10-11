@@ -62,9 +62,7 @@ class Main extends PluginBase implements Listener {
     public function playPopSound(Player $player) {
         $pk = new PlaySoundPacket();
         $pk->soundName = "random.pop";
-        $pk->x = $player->getX();
-        $pk->y = $player->getY();
-        $pk->z = $player->getZ();
+        $pk->position = $player->getPosition();
         $pk->volume = 1.0;
         $pk->pitch = 1.0;
         $player->dataPacket($pk);
