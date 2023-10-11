@@ -28,19 +28,12 @@ class Main extends PluginBase implements Listener {
 
     public function sendJoinForm(Player $player) {
         $config = $this->getConfig()->get("messages");
+
         $form = new SimpleForm(function (Player $player, $data) use ($config) {
-            if (in_array($player->getName(), $this->waitingForConfirmation)) {
-                if ($data === null) {
-                    $this->playPopSound($player);
-                    $this->sendTitle($player, $config["title_on_click"]);
-                    $this->sendSubtitle($player, $config["subtitle_text"]);
-                } else {
-                    $player->sendMessage($config["must_click_ok_message"]);
-                }
-                $key = array_search($player->getName(), $this->waitingForConfirmation);
-                if ($key !== false) {
-                    unset($this->waitingForConfirmation[$key]);
-                }
+            if ($data !== null) { // Check if a button was clicked
+                $this->playPopSound($player);
+                $this->sendTitle($player, $config["title_on_click"]);
+                $this->sendSubtitle($player, $config["subtitle_text"]);
             }
         });
 
@@ -54,8 +47,6 @@ class Main extends PluginBase implements Listener {
         }
 
         $player->sendForm($form);
-
-        $this->waitingForConfirmation[] = $player->getName();
     }
 
     public function playPopSound(Player $player) {
