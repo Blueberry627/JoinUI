@@ -33,7 +33,7 @@ class Main extends PluginBase implements Listener {
     public function openForm(Player $player, array $config) {
         $form = new SimpleForm(function (Player $player, $data) use ($config) {
             if ($data !== null) {
-                if ($data === 0) { // Assuming the "Yes" button is the first one (index 0)
+                if ($data === 0) {
                     $this->playPopSound($player);
                     $this->sendTitle($player, $config["title_on_click"]);
                     $this->sendSubtitle($player, $config["subtitle_text"]);
@@ -46,7 +46,7 @@ class Main extends PluginBase implements Listener {
         $form->setContent(implode("\n", $content));
 
         $buttons = $config["buttons"];
-        $form->addButton($buttons[0]); // Assuming the "Yes" button is the first one
+        $form->addButton($buttons[0]);
         $player->sendForm($form);
     }
 
