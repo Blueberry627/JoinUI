@@ -67,7 +67,7 @@ class Main extends PluginBase implements Listener {
         $pk->z = $location->getZ();
         $pk->volume = 1.0;
         $pk->pitch = 1.0;
-        $player->sendDataPacket($pk);
+        $player->sendData($pk);
     }
 
     public function sendTitle(Player $player, string $titleText) {
