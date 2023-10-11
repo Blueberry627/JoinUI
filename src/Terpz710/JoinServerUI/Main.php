@@ -7,6 +7,7 @@ namespace Terpz710\JoinServerUI;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
+use pocketmine\math\Vector3;
 use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
@@ -62,9 +63,7 @@ class Main extends PluginBase implements Listener {
     public function playPopSound(Player $player) {
         $pk = new PlaySoundPacket();
         $pk->soundName = "random.pop";
-        $pk->x = $player->getX();
-        $pk->y = $player->getY();
-        $pk->z = $player->getZ();
+        $pk->position = new Vector3($player->getX(), $player->getY(), $player->getZ());
         $pk->volume = 1.0;
         $pk->pitch = 1.0;
         $player->dataPacket($pk);
