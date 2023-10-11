@@ -59,21 +59,21 @@ class Main extends PluginBase implements Listener {
     }
 
     public function playPopSound(Player $player) {
-        $pk = new PlaySoundPacket();
-        $pk->soundName = "random.pop";
-        $location = $player->getLocation();
-        $pk->x = $location->getX();
-        $pk->y = $location->getY();
-        $pk->z = $location->getZ();
-        $pk->volume = 1.0;
-        $pk->pitch = 1.0;
-        $player->sendData($pk);
+        $pk = PlaySoundPacket::create(
+            soundName: "random.pop",
+            x: $player->getX(),
+            y: $player->getY(),
+            z: $player->getZ(),
+            volume: 1.0,
+            pitch: 1.0
+        );
+        $player->getNetworkSession()->sendDataPacket($pk);
     }
 
     public function sendTitle(Player $player, string $titleText) {
         $player->sendTitle(TextFormat::colorize($titleText), "");
     }
-    
+
     public function sendSubtitle(Player $player, string $subtitleText) {
         $player->sendSubTitle(TextFormat::colorize($subtitleText));
     }
