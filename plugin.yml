@@ -1,0 +1,6 @@
+name: JoinServerUI
+version: 1.0.0
+main: Terpz710\JoinServerUI\Main
+api: 5.0.0
+author: Terpz710
+description: Sends a UI with customizable server information to players when they join.

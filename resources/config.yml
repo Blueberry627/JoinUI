@@ -1,0 +1,32 @@
+# Informative Configuration for YourPluginName
+
+# Messages Section
+messages:
+  # Title
+  # The title displayed at the top of the form.
+  title: "Welcome to the Server!"
+  
+  # Content
+  # Content lines displayed in the form (each line is separated by a hyphen "-").
+  content:
+    - "Line 1 of content"
+    - "Line 2 of content"
+    - "Line 3 of content"
+  
+  # Buttons
+  # Button labels available in the form.
+  buttons:
+    - "OK"
+    
+  # Title on Click
+  # Message displayed when the player clicks "OK."
+  title_on_click: "Welcome!"
+  
+# Subtitle Text
+  # Subtitle text displayed when the player clicks "OK."
+  subtitle_text: "Enjoy your stay (player)"
+
+  # Must-Click-OK Message
+  # Message displayed when the player tries to close the form without clicking "OK."
+  must_click_ok_message: "You must click 'OK' to close the form."
+  
